@@ -20,6 +20,15 @@ def allowed_file(filename):
 @api_bp.route('/upload', methods=['POST'])
 def upload():
     try:
+        # Retrieve form data
+        employee_size = request.form.get('employee_size')
+        domain = request.form.get('domain')
+        main_product = request.form.get('main_product')
+
+        # Check if employee_size is None
+        if employee_size is None:
+            raise ValueError("Employee size is not provided")
+
         # Use Render's tmp directory
         UPLOAD_FOLDER = '/tmp'
         
